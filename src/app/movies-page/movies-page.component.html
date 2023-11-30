@@ -1,0 +1,150 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<br /><br /><br />
+
+<div class="main">
+  <nav class="centered" align="center">
+    <ul>
+      <li><a routerLink="/main-page" style="font-size: 23px">Ínicio</a></li>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <li><a routerLink="/movies-page" style="font-size: 23px">Filmes</a></li>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <li><a routerLink="/series-page" style="font-size: 23px">Séries</a></li>
+    </ul>
+  </nav>
+
+  <div class="wrap">
+    <div class="search">
+      <input
+        type="text"
+        class="searchTerm"
+        placeholder="Search movies.."
+        style="font-size: 23px"
+        [(ngModel)]="searchResult"
+        (keydown.enter)="onSubmit()"
+        id="searchbar"
+      />
+      <button
+        type="button"
+        class="searchButton"
+        id="searchbutton"
+        (click)="getMovies()"
+      >
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <br /><br /><br /><br /><br /><br /><br />
+  <br /><br />
+
+  <h5 style="margin-left: 2%; color: #fff">Popular Movies</h5>
+  <br />
+  <br /><br />
+  <div class="hero-container" *ngFor="let movies of movies.results">
+    <div class="main-container">
+      <div class="poster-container">
+        <a routerLink="/movie-detail/{{ movies.id }}">
+          <img [src]="imagePath + movies.poster_path" class="poster" />
+        </a>
+      </div>
+      <div class="ticket-container">
+        <div class="ticket__content">
+          <h4 class="ticket__movie-title">{{ movies.title }}</h4>
+          <p class="ticket__movie-slogan">
+            {{ movies.release_date }}
+          </p>
+          <p class="ticket__current-price">
+            <i class="fa fa-star-o" style="font-size: 18 px">{{
+              movies.vote_average
+            }}</i>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="btns" style="margin-left: 35%">
+    <button
+      class="btn btn-primary btn-lg"
+      (click)="selectPage(1)"
+      (click)="topFunction()"
+    >
+      &nbsp; 1 &nbsp;
+    </button>
+    &nbsp;
+    <button
+      class="btn btn-primary btn-lg"
+      (click)="selectPage(2)"
+      (click)="topFunction()"
+    >
+      &nbsp; 2 &nbsp;
+    </button>
+    &nbsp;
+    <button
+      class="btn btn-primary btn-lg"
+      (click)="selectPage(3)"
+      (click)="topFunction()"
+    >
+      &nbsp; 3 &nbsp;
+    </button>
+    &nbsp;
+    <button
+      class="btn btn-primary btn-lg"
+      (click)="selectPage(4)"
+      (click)="topFunction()"
+    >
+      &nbsp; 4 &nbsp;
+    </button>
+    &nbsp;
+    <button
+      class="btn btn-primary btn-lg"
+      (click)="selectPage(5)"
+      (click)="topFunction()"
+    >
+      &nbsp; 5 &nbsp;
+    </button>
+    &nbsp;
+    <button
+      class="btn btn-primary btn-lg"
+      (click)="selectPage(6)"
+      (click)="topFunction()"
+    >
+      &nbsp; 6 &nbsp;
+    </button>
+    &nbsp;
+    <button
+      class="btn btn-primary btn-lg"
+      (click)="selectPage(7)"
+      (click)="topFunction()"
+    >
+      &nbsp; 7 &nbsp;
+    </button>
+    &nbsp;
+    <button
+      class="btn btn-primary btn-lg"
+      (click)="selectPage(8)"
+      (click)="topFunction()"
+    >
+      &nbsp; 8 &nbsp;
+    </button>
+    &nbsp;
+    <button
+      class="btn btn-primary btn-lg"
+      (click)="selectPage(9)"
+      (click)="topFunction()"
+    >
+      &nbsp; 9 &nbsp;
+    </button>
+    &nbsp;
+    <button
+      class="btn btn-primary btn-lg"
+      (click)="selectPage(10)"
+      (click)="topFunction()"
+    >
+      &nbsp;10 &nbsp;
+    </button>
+  </div>
+  <br /><br /><br /><br />
+</div>

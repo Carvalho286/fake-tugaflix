@@ -1,0 +1,86 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<div class="wrapper" *ngIf="actor">
+  <div class="card_left">
+    <div class="card_right">
+      <div style="display: inline-block; vertical-align: top">
+        <img [src]="imagePath + actor.profile_path" />
+      </div>
+      <div style="display: inline-block">
+        <div class="title">{{ actor.name }}</div>
+        <br />
+        <div class="things">
+          <p align="left" style="width: 160px">
+            Birthday: {{ actor.birthday }} Popularity: {{ actor.popularity }}
+          </p>
+
+          <br />
+          <br />
+
+          <p class="overview_film">
+            {{ actor.biography }}
+          </p>
+        </div>
+      </div>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </div>
+    <h3 style="margin-left: 30px">Filmes</h3>
+    <br /><br /><br />
+    <div
+      class="hero-container"
+      *ngFor="let movies of actorMovies.cast.slice(0, 5)"
+    >
+      <div class="main-container">
+        <div class="poster-container">
+          <a routerLink="/movie-detail/{{ movies.id }}">
+            <img [src]="imagePath + movies.poster_path" class="poster" />
+          </a>
+        </div>
+        <div class="ticket-container">
+          <div class="ticket__content">
+            <h4 class="ticket__movie-title">{{ movies.title }}</h4>
+            <p class="ticket__movie-slogan">
+              {{ movies.release_date }}
+            </p>
+            <p class="ticket__current-price">
+              <i class="fa fa-star-o" style="font-size: 18 px">{{
+                movies.vote_average
+              }}</i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+    <br />
+    <h3 style="margin-left: 30px">Series</h3>
+    <br /><br />
+    <div
+      class="hero-container"
+      *ngFor="let movies of actorSeries.cast.slice(0, 5)"
+    >
+      <div class="main-container">
+        <div class="poster-container">
+          <a routerLink="/movie-detail/{{ movies.id }}">
+            <img [src]="imagePath + movies.poster_path" class="poster" />
+          </a>
+        </div>
+        <div class="ticket-container">
+          <div class="ticket__content">
+            <h4 class="ticket__movie-title">{{ movies.name }}</h4>
+            <p class="ticket__movie-slogan">
+              {{ movies.first_air_date }}
+            </p>
+            <p class="ticket__current-price">
+              <i class="fa fa-star-o" style="font-size: 18 px">{{
+                movies.vote_average
+              }}</i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

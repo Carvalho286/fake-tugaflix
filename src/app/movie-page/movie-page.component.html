@@ -1,0 +1,124 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<div class="wrapper" *ngIf="movie">
+  <div class="card_left">
+    <div class="card_right">
+      <div style="display: inline-block; vertical-align: top">
+        <img [src]="imagePath + movie.poster_path" />
+      </div>
+      <div style="display: inline-block">
+        <div class="title">{{ movie.title }}</div>
+        <div class="things">
+          <div class="genres">
+            <p
+              style="
+                padding: 5px;
+                border: 2px solid #041a3b;
+                width: 130px;
+                background-color: #041a3b;
+                border-radius: 12px;
+              "
+              align="center"
+              *ngFor="let genre of movie.genres"
+            >
+              {{ genre.name }}
+            </p>
+          </div>
+          <p align="center" style="width: 160px">
+            {{ movie.release_date }} | {{ movie.runtime }}m
+          </p>
+
+          <br />
+
+          <!-- *ngIf="videos.results.type as Trailer" -->
+          <!-- href="youtu.be/{{ videos.results.key }}" -->
+          <div *ngIf="videos?.results.length > 0">
+            <a
+              href="https://youtu.be/{{ videos.results[0].key }}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button>
+                <i class="fa fa-play"> Watch Video</i>
+              </button>
+            </a>
+          </div>
+
+          <br />
+          <br />
+          <br />
+
+          <p class="overview_film">
+            {{ movie.overview }}
+          </p>
+        </div>
+      </div>
+      <p class="rating" align="center">
+        <i class="fa fa-star-o"></i> {{ movie.vote_average }}
+      </p>
+      <br /><br /><br /><br />
+    </div>
+    <h3 style="margin-left: 30px">Elenco Principal</h3>
+  </div>
+</div>
+<br />
+<div class="hero-container" *ngFor="let cast of credits.cast.slice(0, 6)">
+  <div class="main-container">
+    <div class="poster-container">
+      <a routerLink="/actor-detail/{{ cast.id }}">
+        <img [src]="imagePath + cast.profile_path" class="poster" />
+      </a>
+    </div>
+    <div class="ticket-container">
+      <div class="ticket__content">
+        <h4 class="ticket__movie-title">{{ cast.name }}</h4>
+        <p class="ticket__movie-slogan">
+          Known in department for: {{ cast.known_for_department }}
+        </p>
+        <p class="ticket__current-price">
+          {{ cast.character }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br />
+<br />
+<div class="container d-flex justify-content-center mt-100 mb-100">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Recent Comments</h4>
+        </div>
+
+        <div
+          class="comment-widgets m-b-20"
+          *ngFor="let comment of comments.results.slice(0, 4)"
+        >
+          <div class="d-flex flex-row comment-row">
+            <div class="p-2">
+              <span class="round"
+                ><img
+                  src="https://ec-aminhota.pt/wp-content/uploads/2015/05/perfil-sem-foto-220615.png"
+                  alt="user"
+                  width="50"
+              /></span>
+            </div>
+            <div class="comment-text w-100">
+              <h5>{{ comment.author_details.username }}</h5>
+              <div class="comment-footer">
+                <p class="date">{{ comment.created_at.slice(0, 10) }}</p>
+              </div>
+              <p class="m-b-5 m-t-10">
+                {{ comment.content }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

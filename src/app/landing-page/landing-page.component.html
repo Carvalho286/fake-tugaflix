@@ -1,0 +1,73 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<br /><br /><br />
+<div class="main">
+  <nav class="centered" align="center">
+    <ul>
+      <li><a href="#" style="font-size: 23px">Ínicio</a></li>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <li><a routerLink="/movies-page" style="font-size: 23px">Filmes</a></li>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <li><a routerLink="/series-page" style="font-size: 23px">Séries</a></li>
+    </ul>
+  </nav>
+  <br /><br />
+  <h5 style="margin-left: 2%; color: #fff">Now Playing Movies</h5>
+  <br />
+  <div
+    class="hero-container"
+    *ngFor="let nowPlayingMovie of nowPlayingMovies.results.slice(0, 10)"
+  >
+    <div class="main-container">
+      <div class="poster-container">
+        <a routerLink="/movie-detail/{{ nowPlayingMovie.id }}">
+          <img [src]="imagePath + nowPlayingMovie.poster_path" class="poster" />
+        </a>
+      </div>
+      <div class="ticket-container">
+        <div class="ticket__content">
+          <h4 class="ticket__movie-title">{{ nowPlayingMovie.title }}</h4>
+          <p class="ticket__movie-slogan">
+            {{ nowPlayingMovie.release_date }}
+          </p>
+          <p class="ticket__current-price">
+            <i class="fa fa-star-o" style="font-size: 18 px">{{
+              nowPlayingMovie.vote_average
+            }}</i>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br /><br /><br /><br />
+  <h5 style="margin-left: 2%; color: #fff">Series on Air</h5>
+  <br />
+  <div
+    class="hero-container"
+    *ngFor="let serieOnAir of seriesOnAir.results.slice(0, 10)"
+  >
+    <div class="main-container">
+      <div class="poster-container">
+        <a routerLink="/serie-detail/{{ serieOnAir.id }}">
+          <img [src]="imagePath + serieOnAir.poster_path" class="poster" />
+        </a>
+      </div>
+      <div class="ticket-container">
+        <div class="ticket__content">
+          <h4 class="ticket__movie-title">{{ serieOnAir.name }}</h4>
+          <p class="ticket__movie-slogan">
+            {{ serieOnAir.first_air_date }}
+          </p>
+          <p class="ticket__current-price">
+            <i class="fa fa-star-o" style="font-size: 18 px">{{
+              serieOnAir.vote_average
+            }}</i>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <p>{{ nowPlayingMovies.results | json }};</p> -->
+</div>
